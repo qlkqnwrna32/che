@@ -20,7 +20,7 @@ do
   docker cp $container:/home/theia/lib/$file $destination/$file
   if [[ "$file" == *.*.js ]]
   then
-    docker cp $container:/home/theia/lib/$file.map $destination/$file.map
+    docker cp $container:/home/theia/lib/$file.map $destination/$file.map || true
   fi
 done
 docker rm $container
