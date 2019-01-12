@@ -81,7 +81,7 @@ public class CheWsAgentCorsAllowedOriginsProvider implements Provider<String> {
 
   @Override
   public String get() {
-    LOG.info("allowedOrigins {} ", allowedOrigins);
+    LOG.debug("allowedOrigins {} ", allowedOrigins);
     return allowedOrigins;
   }
 
@@ -89,7 +89,7 @@ public class CheWsAgentCorsAllowedOriginsProvider implements Provider<String> {
     for (Machine machine : workspaceDto.getRuntime().getMachines().values()) {
       for (Server server : machine.getServers().values()) {
         if ("ide".equals(server.getAttributes().get("type"))) {
-          LOG.info("Found ide server {}", server);
+          LOG.debug("Found ide server {}", server);
           return server.getUrl();
         }
       }
