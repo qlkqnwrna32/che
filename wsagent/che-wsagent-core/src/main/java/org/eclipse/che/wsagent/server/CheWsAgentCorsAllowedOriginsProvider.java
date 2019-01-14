@@ -21,7 +21,6 @@ import org.eclipse.che.api.core.model.workspace.runtime.Machine;
 import org.eclipse.che.api.core.model.workspace.runtime.Server;
 import org.eclipse.che.api.core.rest.HttpJsonRequestFactory;
 import org.eclipse.che.api.workspace.server.WorkspaceService;
-import org.eclipse.che.api.workspace.shared.Constants;
 import org.eclipse.che.api.workspace.shared.dto.WorkspaceDto;
 import org.eclipse.che.commons.annotation.Nullable;
 import org.slf4j.Logger;
@@ -89,7 +88,7 @@ public class CheWsAgentCorsAllowedOriginsProvider implements Provider<String> {
   private String getIdeUrl(WorkspaceDto workspaceDto) {
     for (Machine machine : workspaceDto.getRuntime().getMachines().values()) {
       for (Server server : machine.getServers().values()) {
-        if (Constants.LINK_REL_IDE_URL.equals(server.getAttributes().get("type"))) {
+        if ("ide".equals(server.getAttributes().get("type"))) {
           LOG.debug("Found ide server {}", server);
           return server.getUrl();
         }
